@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23221026b7452524cb97019a33fd5f88, type: 3}
+  m_Name: Boss
+  m_EditorClassIdentifier: 
+  _bossSpite: {fileID: 21300000, guid: f0d6cf9800390ed4b9f6f4354a330244, type: 3}
+  _stage:
+    _curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 10
+        value: 120
+        inSlope: 0.13558385
+        outSlope: 0.13558385
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.044466846
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 0
+      m_RotationOrder: 4
+    _objective: 10
+    _knifeCount: 0
+  _reward: {fileID: 21300000, guid: b79276296143a754780777c94eed7032, type: 3}

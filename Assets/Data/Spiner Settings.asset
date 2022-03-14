@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 788aa11843e1b324cbccc63c07763dfc, type: 3}
+  m_Name: Spiner Settings
+  m_EditorClassIdentifier: 
+  _spinerRadius: 1.6
+  _spinerDestroyPrefab: {fileID: 3245617492184004889, guid: daa91782bae18564b9115099dad5a360, type: 3}
+  _applePrefab: {fileID: 2824342035241171145, guid: 924c966b543c23f4cb6de0e38aa5499a, type: 3}
+  _defaultKnifePrefab: {fileID: 1554435707014388820, guid: e2db562f4d2412740b7261981feae52e, type: 3}
+  _spawnAppleChange: 25
