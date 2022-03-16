@@ -22,9 +22,22 @@ public class HUD : MonoBehaviour
 
     [SerializeField] private Icon _knifeIcon;
 
+    private float _xOffsetPercent = 5; // %
+    private float _yOffsetPercent = 5; // %
+
     private readonly List<Icon> _iconsKnife = new List<Icon>();
 
     private int _index;
+
+    private void Awake()
+    {
+        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+        
+        _scoreDefaultPos.y = screenSize.y / 100 * 5 - screenSize.y / 2;
+        _knifeDefaultPos.x = screenSize.x / 100 * 5 - screenSize.x / 2;
+        _knifeMenuPosition.x = -screenSize.x / 100 * 5 - screenSize.x / 2;
+    }
+
     public void AppleCountChanged(int val)
     {
         _appleCount.text = val.ToString();

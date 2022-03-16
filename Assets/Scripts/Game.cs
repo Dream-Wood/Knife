@@ -155,9 +155,12 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void SaveData()
+    private void SaveData() //Вообще необходимо вынеси в отдельный класс, но это PP
     {
-        PlayerPrefs.SetInt("Score", _score);
+        if (_highScore < _score)
+        {
+            PlayerPrefs.SetInt("Score", _score);   
+        }
         PlayerPrefs.SetInt("Apple", _appleCount);
     }
 

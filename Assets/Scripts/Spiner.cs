@@ -21,7 +21,9 @@ public class Spiner : MonoBehaviour
 
     private AnimationCurve _rotationPattern;
 
-    private bool isFirst = true;
+    private bool _isFirst = true;
+
+    private float _knifeAttachOffset = 0.5f;
 
     [SerializeField] private float _iteration;
 
@@ -88,7 +90,7 @@ public class Spiner : MonoBehaviour
         _spinerSpriteRenderer.sprite = spinSprite;
         _spinObject.SetActive(false);
 
-        if (!isFirst)
+        if (!_isFirst)
         {
             GameObject tmp = Instantiate(_settings.SpinerDestroyPrefab, transform.position, Quaternion.identity);
             Destroy(tmp, 1);
@@ -96,13 +98,13 @@ public class Spiner : MonoBehaviour
 
         foreach (var o in _attachObjects)
         {
-            o.Spin();
+            o.Detach();
         }
 
         _attachObjects.Clear();
-        isFirst = false;
+        _isFirst = false;
 
-        Invoke(nameof(Initialize), 0.5f);
+        Invoke(nameof(Initialize), 0.25f);
     }
 
     public void GameUpdate()

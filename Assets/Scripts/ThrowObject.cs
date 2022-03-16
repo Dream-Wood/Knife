@@ -19,8 +19,8 @@ public class ThrowObject : MonoBehaviour
     {
         _rigidbody.simulated = false;
         _spriteRenderer.DOFade(0,0);
-        transform.DOMoveY(OriginThrower.transform.position.y, .3f);
-        _spriteRenderer.DOFade(1, .3f);
+        transform.DOMoveY(OriginThrower.transform.position.y, .1f);
+        _spriteRenderer.DOFade(1, .1f);
     }
 
     public void Run(float force)
@@ -29,11 +29,12 @@ public class ThrowObject : MonoBehaviour
         _rigidbody.AddForce(Vector2.up * force);
     }
 
-    public void Spin()
+    public void Detach()
     {
         _rigidbody.constraints = RigidbodyConstraints2D.None;
         _rigidbody.AddTorque(30);
         _spriteRenderer.DOFade(0, 1f);
+        _collider.enabled = false;
         Destroy(gameObject, 1f);
     }
 

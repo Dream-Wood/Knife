@@ -2008,7 +2008,7 @@ MonoBehaviour:
   _scoreMenuPosition: {x: 0, y: 450, z: 0}
   _scoreDefaultPos: {x: 0, y: -1145, z: 0}
   _knifeContainer: {fileID: 736425878}
-  _knifeMenuPosition: {x: -600, y: -170, z: 0}
+  _knifeMenuPosition: {x: -1600, y: -170, z: 0}
   _knifeDefaultPos: {x: -440, y: -170, z: 0}
   _knifeIcon: {fileID: 6092059819373171496, guid: db6cf894de45fa048a3f451975209ee4, type: 3}
 --- !u!1 &1434488335
