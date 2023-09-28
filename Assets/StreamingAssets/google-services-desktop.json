@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "888779133533",
+    "project_id": "knife-20706",
+    "storage_bucket": "knife-20706.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888779133533:android:1ddc8bb46b25dd00a1b3b4",
+        "android_client_info": {
+          "package_name": "com.knife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888779133533-8i5u7dpgn263s9r09knh6jsgdcfdi1co.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.knife",
+            "certificate_hash": "e5e882e5707fa2ca4a029411ab3f223a1539ffc1"
+          }
+        },
+        {
+          "client_id": "888779133533-uc1qjj9p2t7tfj617d1843hhqiv52mfv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAndef3zWRFuYzyMYBNCyW8Z_XFBq6gSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888779133533-uc1qjj9p2t7tfj617d1843hhqiv52mfv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

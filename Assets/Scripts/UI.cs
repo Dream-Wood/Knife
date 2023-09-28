@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
-{
-    [SerializeField] private GameObject _menuScreen;
+{ 
+    [SerializeField] private GameObject menuScreen;
+    [SerializeField] private GameObject failScreen;
+    [SerializeField] private GameObject shopScreen;
+    [SerializeField] private GameObject regScreen;
     
-    [SerializeField] private GameObject _failScreen;
-
     public void ShowMenuScreen(bool val)
     {
         if (val)
         {
-            MoveIn(_menuScreen.transform);
+            MoveIn(menuScreen.transform);
         }
         else
         {
-            MoveOut(_menuScreen.transform);
+            MoveOut(menuScreen.transform);
         }
     }
     
@@ -25,11 +28,28 @@ public class UI : MonoBehaviour
     {
         if (val)
         {
-            MoveIn(_failScreen.transform);
+            MoveIn(failScreen.transform);
         }
         else
         {
-            MoveOut(_failScreen.transform);
+            MoveOut(failScreen.transform);
+        }
+    }
+    
+    public void ShowRegScreen(bool val)
+    {
+        regScreen.SetActive(val);
+    }
+    
+    public void ShowShopScreen(bool val)
+    {
+        if (val)
+        {
+            MoveIn(shopScreen.transform);
+        }
+        else
+        {
+            MoveOut(shopScreen.transform);
         }
     }
 

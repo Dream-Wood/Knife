@@ -1,35 +1,69 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
     [SerializeField] private Spiner _spiner;
-    
+
     [SerializeField] private Thrower _thrower;
-    
+
     [SerializeField] private HUD _hud;
-    
+
     [SerializeField] private UI _ui;
-    
+
     [SerializeField] private LevelData[] _levels;
 
+    [SerializeField] private UnityAnalyticsInit _anal;
+    [SerializeField] private TMP_InputField _field;
+
     private int _appleCount;
-    
+
     private int _score;
     
+    private bool _firstBoot = false;
+
     private int _highScore;
 
     private int _objective;
 
     private int _stage;
-    
+
+    private string _name;
+
     private int _level;
 
     private bool _isBossStage;
-    
+
     private bool _pause;
+
+    public void BuyContest(int cost)
+    {
+        if (_appleCount < cost)
+        {
+            return;
+        }
+
+        _appleCount -= cost;
+        _anal.SendBuyContestEvent();
+        _hud.AppleCountChanged(_appleCount);
+        SaveData();
+    }
+
+    public void AddNewUser()
+    {
+        if (_field == null)
+        {
+            return;
+        }
+
+        _name = _field.text;
+        _ui.ShowRegScreen(false);
+        _firstBoot = true;
+        SaveData();
+    }
 
     public void StartGame()
     {
@@ -38,9 +72,10 @@ public class Game : MonoBehaviour
         _hud.ScoreChanged(_score);
         _pause = false;
         _ui.ShowMenuScreen(false);
+        
         NextStage();
     }
-    
+
     public void StopGame()
     {
         SceneManager.LoadScene(0);
@@ -57,21 +92,28 @@ public class Game : MonoBehaviour
 
         _highScore = PlayerPrefs.GetInt("Score");
         _appleCount = PlayerPrefs.GetInt("Apple");
+        _name = PlayerPrefs.GetString("PlayerName");
+        _firstBoot = PlayerPrefs.GetInt("FB") != 0;
         
-       _hud.ScoreChanged(_highScore);
-       _hud.AppleCountChanged(_appleCount);
+        _hud.ScoreChanged(_highScore);
+        _hud.AppleCountChanged(_appleCount);
+        
+        if (_name == "" || !_firstBoot)
+        {
+            _ui.ShowRegScreen(true);
+        }
     }
 
     private void OnEnable()
     {
-        _thrower.OnSuccess += OnScoreChanged; 
+        _thrower.OnSuccess += OnScoreChanged;
         _thrower.OnCollectApple += OnAppleCollect;
         _thrower.OnFail += OnFail;
     }
 
     private void OnDisable()
     {
-        _thrower.OnSuccess -= OnScoreChanged; 
+        _thrower.OnSuccess -= OnScoreChanged;
         _thrower.OnCollectApple -= OnAppleCollect;
         _thrower.OnFail -= OnFail;
     }
@@ -81,7 +123,7 @@ public class Game : MonoBehaviour
         _appleCount++;
         _hud.AppleCountChanged(_appleCount);
     }
-    
+
     private void OnFail()
     {
         _hud.MenuMode();
@@ -89,7 +131,7 @@ public class Game : MonoBehaviour
         _ui.ShowFailScreen(true);
         SaveData();
     }
-    
+
     private void OnScoreChanged()
     {
         _objective--;
@@ -100,7 +142,7 @@ public class Game : MonoBehaviour
         if (_objective == 0)
         {
             Vibration.VibrateNope();
-            
+
             if (_isBossStage)
             {
                 _isBossStage = false;
@@ -108,17 +150,19 @@ public class Game : MonoBehaviour
                 {
                     _level++;
                 }
+
                 _stage = 0;
                 NextStage();
                 return;
             }
-            
+
             if (_stage == _levels[_level].Stages.Length - 1)
             {
                 BossStage();
                 _stage++;
                 return;
             }
+
             _stage++;
             NextStage();
         }
@@ -147,8 +191,9 @@ public class Game : MonoBehaviour
         {
             return;
         }
+
         _spiner.GameUpdate();
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             _thrower.Throw();
@@ -159,9 +204,12 @@ public class Game : MonoBehaviour
     {
         if (_highScore < _score)
         {
-            PlayerPrefs.SetInt("Score", _score);   
+            PlayerPrefs.SetInt("Score", _score);
         }
+
+        PlayerPrefs.SetInt("FB", _firstBoot ? 1 : 0);
         PlayerPrefs.SetInt("Apple", _appleCount);
+        PlayerPrefs.SetString("PlayerName", _name);
     }
 
     private void OnApplicationQuit()
